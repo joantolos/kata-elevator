@@ -33,7 +33,7 @@ public class Hospital {
     }
 
     public void requestElevator(Integer requestedFloor) {
-        elevators.get(0).setCurrentFloor(requestedFloor);
+        elevators.get(0).moveToFloor(requestedFloor);
     }
 
     public Boolean isAnyElevatorOnFloor(Integer floorNumber){
