@@ -31,4 +31,12 @@ public class Hospital {
     public Integer getUnderGroundFloorsCount(){
         return floors.stream().filter(Floor::isUnderground).collect(Collectors.toList()).size();
     }
+
+    public void requestElevator(Integer requestedFloor) {
+        elevators.get(0).setCurrentFloor(requestedFloor);
+    }
+
+    public Boolean isAnyElevatorOnFloor(Integer floorNumber){
+        return floorNumber.equals(elevators.get(0).getCurrentFloor()) || floorNumber.equals(elevators.get(1).getCurrentFloor());
+    }
 }

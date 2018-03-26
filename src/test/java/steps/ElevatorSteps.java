@@ -1,6 +1,7 @@
 package steps;
 
 import com.joantolos.kata.elevator.Hospital;
+import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 import org.junit.Assert;
 
@@ -10,11 +11,11 @@ public class ElevatorSteps implements En {
 
     public ElevatorSteps() {
 
-        Given("^There is a hospital$", () -> {
+        Before((body) -> {
             this.hospital = new Hospital(5, 2);
         });
 
-        Then("^the hospital has (\\d+) floors$", (Integer expectedNumberOfOverGroundFloors) -> {
+        Given("^There is a hospital with (\\d+) floors$", (Integer expectedNumberOfOverGroundFloors) -> {
             Assert.assertEquals(expectedNumberOfOverGroundFloors, this.hospital.getOverGroundFloorsCount());
         });
 
@@ -24,6 +25,12 @@ public class ElevatorSteps implements En {
 
         And("^the hospital has (\\d+) elevators$", (Integer expectedNumberOfElevators) -> {
             Assert.assertTrue(expectedNumberOfElevators == this.hospital.getElevators().size());
+        });
+        Given("^Joan pushes the button for the elevator on the (\\d+) floor$", (Integer requestedFloor) -> {
+            this.hospital.requestElevator(requestedFloor);
+        });
+        Then("^one of the two elevators ends up on the third floor$", () -> {
+            Assert.assertTrue(this.hospital.isAnyElevatorOnFloor(3));
         });
 
     }
