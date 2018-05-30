@@ -33,7 +33,11 @@ public class Hospital {
     }
 
     public void requestElevator(Integer requestedFloor) {
-        elevators.get(0).moveToFloor(requestedFloor);
+        this.getFreeElevator().moveToFloor(requestedFloor);
+    }
+
+    private Elevator getFreeElevator() {
+        return elevators.stream().filter(elevator -> !elevator.isInMotion()).findFirst().get();
     }
 
     public Boolean isAnyElevatorOnFloor(Integer floorNumber){

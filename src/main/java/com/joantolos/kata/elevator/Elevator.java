@@ -31,8 +31,17 @@ public class Elevator {
     }
 
     public void moveToFloor(Integer newFloor) {
-        this.inMotion = true;
-        this.currentFloor = newFloor;
-        this.inMotion = false;
+        try {
+            this.inMotion = true;
+            Thread.sleep(howMuchTimeItTakes(newFloor));
+            this.currentFloor = newFloor;
+            this.inMotion = false;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private int howMuchTimeItTakes(Integer newFloor) {
+        return 5000;
     }
 }
