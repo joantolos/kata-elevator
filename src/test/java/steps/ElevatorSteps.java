@@ -1,7 +1,7 @@
 package steps;
 
+import com.joantolos.kata.elevator.Floor;
 import com.joantolos.kata.elevator.Hospital;
-import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 import org.junit.Assert;
 
@@ -27,10 +27,10 @@ public class ElevatorSteps implements En {
             Assert.assertTrue(expectedNumberOfElevators == this.hospital.getElevators().size());
         });
         Given("^Joan pushes the button for the elevator on the (\\d+) floor$", (Integer requestedFloor) -> {
-            this.hospital.requestElevator(requestedFloor);
+            this.hospital.requestElevator(new Floor(false, requestedFloor));
         });
         Then("^one of the two elevators ends up on the third floor$", () -> {
-            Assert.assertTrue(this.hospital.isAnyElevatorOnFloor(3));
+            Assert.assertTrue(this.hospital.isAnyElevatorOnFloor(new Floor(false, 3)));
         });
 
     }

@@ -10,8 +10,8 @@ class ElevatorSpec extends Specification {
         Elevator elevator = new Elevator(0, "Test elevator")
 
         expect: 'to take an extra 100 milliseconds for each floor that moves.'
-        elevator.moveToFloor(actualFloor)
-        elevator.howMuchTimeItTakes(newFloor) == expectedTime
+        elevator.moveToFloor(new Floor(false, actualFloor))
+        elevator.howMuchTimeItTakes(new Floor(false, newFloor)) == expectedTime
 
         where:
         actualFloor | newFloor    | expectedTime

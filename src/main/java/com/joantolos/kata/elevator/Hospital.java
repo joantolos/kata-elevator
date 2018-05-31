@@ -32,7 +32,7 @@ public class Hospital {
         return floors.stream().filter(Floor::isUnderground).collect(Collectors.toList()).size();
     }
 
-    public void requestElevator(Integer requestedFloor) {
+    public void requestElevator(Floor requestedFloor) {
         this.getFreeElevator().moveToFloor(requestedFloor);
     }
 
@@ -40,7 +40,7 @@ public class Hospital {
         return elevators.stream().filter(elevator -> !elevator.isInMotion()).findFirst().get();
     }
 
-    public Boolean isAnyElevatorOnFloor(Integer floorNumber){
-        return floorNumber.equals(elevators.get(0).getCurrentFloor()) || floorNumber.equals(elevators.get(1).getCurrentFloor());
+    public Boolean isAnyElevatorOnFloor(Floor floorCandidate){
+        return floorCandidate.equals(elevators.get(0).getCurrentFloor()) || floorCandidate.equals(elevators.get(1).getCurrentFloor());
     }
 }

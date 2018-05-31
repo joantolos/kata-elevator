@@ -4,13 +4,13 @@ public class Elevator {
 
     private final Integer id;
     private final String name;
-    private Integer currentFloor;
+    private Floor currentFloor;
     private Boolean inMotion;
 
     public Elevator(Integer id, String name) {
         this.id = id;
         this.name = name;
-        this.currentFloor = 0;
+        this.currentFloor = new Floor(false, 0);
         this.inMotion = false;
     }
 
@@ -22,7 +22,7 @@ public class Elevator {
         return name;
     }
 
-    public Integer getCurrentFloor() {
+    public Floor getCurrentFloor() {
         return currentFloor;
     }
 
@@ -30,7 +30,7 @@ public class Elevator {
         return inMotion;
     }
 
-    public void moveToFloor(Integer newFloor) {
+    public void moveToFloor(Floor newFloor) {
         try {
             this.inMotion = true;
             Thread.sleep(howMuchTimeItTakes(newFloor));
@@ -41,7 +41,7 @@ public class Elevator {
         }
     }
 
-    protected int howMuchTimeItTakes(Integer newFloor) {
-        return (Math.abs(newFloor - this.currentFloor) * 100) + 400;
+    protected int howMuchTimeItTakes(Floor newFloor) {
+        return (Math.abs(newFloor.getNumber() - this.currentFloor.getNumber()) * 100) + 400;
     }
 }
