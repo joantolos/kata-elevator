@@ -41,7 +41,7 @@ public class Elevator {
         }
     }
 
-    private int howMuchTimeItTakes(Integer newFloor) {
-        return 5000;
+    protected int howMuchTimeItTakes(Integer newFloor) {
+        return (Math.abs(newFloor - this.currentFloor) * 100) + 400;
     }
 }

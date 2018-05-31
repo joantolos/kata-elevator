@@ -45,7 +45,7 @@ allprojects {
         testCompile 'info.cukes:cucumber-java8:1.2.5'
         testCompile 'info.cukes:cucumber-junit:1.2.5'
         testCompile 'junit:junit:4.12'
-
+        testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
     }
 
     task fatJar(type: Jar) {
