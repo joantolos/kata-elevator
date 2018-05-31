@@ -20,6 +20,10 @@ public class Floor {
         return number;
     }
 
+    public void requestElevator() {
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -29,9 +33,4 @@ public class Floor {
                 Objects.equals(number, floor.number);
     }
 
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(underground, number);
-    }
 }

@@ -1,16 +1,19 @@
 package com.joantolos.kata.elevator;
 
+import java.util.List;
+
 public class Elevator {
 
     private final Integer id;
     private final String name;
     private Floor currentFloor;
     private Boolean inMotion;
+    private List<Floor> floorRequests;
 
-    public Elevator(Integer id, String name) {
+    public Elevator(Integer id, String name, Floor startingFloor) {
         this.id = id;
         this.name = name;
-        this.currentFloor = new Floor(false, 0);
+        this.currentFloor = startingFloor;
         this.inMotion = false;
     }
 
@@ -30,7 +33,11 @@ public class Elevator {
         return inMotion;
     }
 
-    public void moveToFloor(Floor newFloor) {
+    public void requestFloor(Floor newFloor) {
+        this.moveToFloor(newFloor);
+    }
+
+    private void moveToFloor(Floor newFloor) {
         try {
             this.inMotion = true;
             Thread.sleep(howMuchTimeItTakes(newFloor));
