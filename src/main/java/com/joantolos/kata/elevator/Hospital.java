@@ -18,8 +18,8 @@ public class Hospital {
         IntStream.range(0, underGroundFloors).forEach(floor -> this.floors.add(new Floor(true, floor)));
 
         this.elevators = new ArrayList<>();
-        this.elevators.add(new Elevator(1, "ElevatorOne", getFloor(0)));
-        this.elevators.add(new Elevator(2, "ElevatorTwo", getFloor(0)));
+        this.elevators.add(new Elevator(getFloor(0)));
+        this.elevators.add(new Elevator(getFloor(0)));
     }
 
     public List<Elevator> getElevators() {
@@ -32,18 +32,6 @@ public class Hospital {
 
     public Integer getUnderGroundFloorsCount(){
         return floors.stream().filter(Floor::isUnderground).collect(Collectors.toList()).size();
-    }
-
-    public void requestElevator(Floor requestedFloor) {
-        this.getFreeElevator().requestFloor(requestedFloor);
-    }
-
-    private Elevator getFreeElevator() {
-        return elevators.stream().filter(elevator -> !elevator.isInMotion()).findFirst().get();
-    }
-
-    public Boolean isAnyElevatorOnFloor(Floor floorCandidate){
-        return floorCandidate.equals(elevators.get(0).getCurrentFloor()) || floorCandidate.equals(elevators.get(1).getCurrentFloor());
     }
 
     public Floor getFloor(Integer floorNumber) throws NonExistingFloorException {

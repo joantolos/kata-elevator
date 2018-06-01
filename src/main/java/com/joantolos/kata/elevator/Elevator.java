@@ -1,28 +1,18 @@
 package com.joantolos.kata.elevator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Elevator {
 
-    private final Integer id;
-    private final String name;
     private Floor currentFloor;
     private Boolean inMotion;
     private List<Floor> floorRequests;
 
-    public Elevator(Integer id, String name, Floor startingFloor) {
-        this.id = id;
-        this.name = name;
+    public Elevator(Floor startingFloor) {
         this.currentFloor = startingFloor;
         this.inMotion = false;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
+        this.floorRequests = new ArrayList<>();
     }
 
     public Floor getCurrentFloor() {
@@ -34,7 +24,11 @@ public class Elevator {
     }
 
     public void requestFloor(Floor newFloor) {
-        this.moveToFloor(newFloor);
+        this.floorRequests.add(newFloor);
+    }
+
+    public void attendRequests() {
+        this.floorRequests.forEach(this::moveToFloor);
     }
 
     private void moveToFloor(Floor newFloor) {

@@ -7,10 +7,11 @@ class ElevatorSpec extends Specification {
     def 'Calculate how much time it takes to go from floor to floor'() {
 
         given: "an elevator on the entrance floor"
-        Elevator elevator = new Elevator(0, "Test elevator", new Floor(false, 0))
+        Elevator elevator = new Elevator(new Floor(false, 0))
 
         expect: 'to take an extra 100 milliseconds for each floor that moves.'
-        elevator.moveToFloor(new Floor(false, actualFloor))
+        elevator.requestFloor(new Floor(false, actualFloor))
+        elevator.attendRequests()
         elevator.howMuchTimeItTakes(new Floor(false, newFloor)) == expectedTime
 
         where:
