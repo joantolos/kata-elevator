@@ -42,7 +42,7 @@ public class Elevator {
         }
     }
 
-    protected int howMuchTimeItTakes(Floor newFloor) {
+    protected Integer howMuchTimeItTakes(Floor newFloor) {
         return (Math.abs(newFloor.getNumber() - this.currentFloor.getNumber()) * 100) + 400;
     }
 }
